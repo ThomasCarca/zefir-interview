@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { formatCurrency } from '../utils/format';
 import { Modal } from './Modal'
 interface HomeModalProps {
     home: Home;
@@ -11,7 +12,7 @@ export const HomeModal = ({home, isVisible, onClose}: HomeModalProps ) => {
   return (<Modal title={home.address} onClose={onClose} isVisible={isVisible}>
     <Image src={home.picture} alt={'Home picture'} height={900} width={1600}/>
     <div className="text-lg font-bold text-blue-900">
-      {home.price} {home.currency}
+      {formatCurrency(home.price, home.currency)}
     </div>
     <div>
       <span className="text-sm font-medium text-black">{'Owned by '}</span>

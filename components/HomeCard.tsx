@@ -1,3 +1,5 @@
+import { formatCurrency } from '../utils/format';
+
 interface HomeCardProps {
   home: Home;
   onClick: () => void;
@@ -9,7 +11,7 @@ export const HomeCard = ({home, onClick}: HomeCardProps) => {
       <div className="flex justify-between w-full pb-3">
         <div className="flex flex-row justify-between w-full">
           <span className="text-sm font-bold">{home.address}</span>
-          <span className="text-sm font-bold text-blue-900">{home.price}</span>
+          <span className="text-sm font-bold text-blue-900">{formatCurrency(home.price, home.currency)}</span>
         </div>
       </div>
       <img className="w-full h-48 bg-cover" src={home.picture} alt="home picture" />
