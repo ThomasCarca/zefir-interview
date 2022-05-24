@@ -5,10 +5,12 @@ import { HomeList } from '../components/HomeList';
 import { Layout } from '../components/Layout';
 import { AnimatedLoader } from '../components/AnimatedLoader';
 import { getRandomHomes } from '../business/getRandomHomes';
+import { Filter } from '../components/Filter';
 
 const Homes: NextPage = () => {
   const [homes, setHomes] = useState<Home[]>();
   const [isLoading, setLoading] = useState(false);
+  const [filter, setFilter] = useState<string>('');
 
   useEffect(() => {
     const fetchHomes = async () => {
@@ -25,7 +27,8 @@ const Homes: NextPage = () => {
 
   return (
     <Layout>
-      <HomeList homes={homes} />
+      <Filter onFilter={(text) => setFilter(text)}/>
+      <HomeList homes={homes} filter={filter} />
     </Layout>
   );
 };

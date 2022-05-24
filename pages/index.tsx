@@ -8,7 +8,7 @@ interface Props { homes: Home[] }
 
 const Index: NextPage<Props> = ({ homes }: Props) => (
   <Layout>
-    <HomeList homes={homes} />
+    <HomeList homes={homes} filter={''}/>
   </Layout>
 )
 
