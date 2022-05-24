@@ -9,12 +9,11 @@ import { Filter } from '../components/Filter';
 
 const Homes: NextPage = () => {
   const [homes, setHomes] = useState<Home[]>();
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>('');
 
   useEffect(() => {
     const fetchHomes = async () => {
-      setLoading(true)
       const homes = await getRandomHomes();
       setHomes(homes);
       setLoading(false);

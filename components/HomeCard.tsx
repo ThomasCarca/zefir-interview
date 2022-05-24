@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { formatCurrency } from '../utils/format';
 
 interface HomeCardProps {
@@ -14,7 +15,10 @@ export const HomeCard = ({home, onClick}: HomeCardProps) => {
           <span className="text-sm font-bold text-blue-900">{formatCurrency(home.price, home.currency)}</span>
         </div>
       </div>
-      <img className="w-full h-48 bg-cover" src={home.picture} alt="home picture" />
+      <div className="w-full h-48 bg-cover relative">
+
+        <Image  src={home.picture} alt="home picture" layout="fill"/>
+      </div>
       <div className="pb-2">
         <div className="pt-2">
           <i className="cursor-pointer far fa-heart"></i>
