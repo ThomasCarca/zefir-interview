@@ -4,17 +4,21 @@ import { useEffect, useState } from 'react';
 import { HomeList } from '../components/HomeList';
 import { Layout } from '../components/Layout';
 import { AnimatedLoader } from '../components/AnimatedLoader';
+import { getRandomHomes } from '../business/getRandomHomes';
 
 const Homes: NextPage = () => {
-  const [homes, setHomes] = useState();
+  const [homes, setHomes] = useState<Home[]>();
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch('api/home')
-      .then((res) => res.json())
-      .then((data: Home[]) => setHomes(data));
-    setLoading(false);
-  }, [homes]);
+    const fetchHomes = async () => {
+      setLoading(true)
+      const homes = await getRandomHomes();
+      setHomes(homes);
+      setLoading(false);
+    }
+    fetchHomes();
+  }, []);
 
   if (isLoading) return <AnimatedLoader />
   if (!homes) return <p>No home to show, please reload the page!</p>
