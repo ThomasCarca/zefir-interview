@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { HomeIcon } from './HomeIcon';
 
 const MenuEntry = ({ href, icon, title }: {
@@ -6,12 +6,20 @@ const MenuEntry = ({ href, icon, title }: {
   icon: ReactNode
   title: ReactNode
 }) => {
+
+  const [isHighlighted, setHighlighted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line more/no-window
+    setHighlighted(window.location.pathname === href)
+  }, [href])
+
   return (
     <a className="flex items-center justify-start p-2 my-0 font-thin text-gray-500 transition-colors duration-200 hover:text-gray-800 " href={href}>
       <span className="text-left">
         {icon}
       </span>
-      <span className="mx-4 font-normal text-md">
+      <span className={`mx-4 font-normal text-md ${isHighlighted && 'text-blue-500'}`}>
         {title}
       </span>
     </a>
