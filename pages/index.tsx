@@ -6,16 +6,16 @@ import { Layout } from '../components/Layout';
 
 interface Props { homes: Home[] }
 
-const Index: NextPage<Props> = ({ homes }: Props) => {
+const Index: NextPage<Props> = ({ homes }: Props) => (
   <Layout>
     <HomeList homes={homes} />
   </Layout>
-};
+)
 
 export async function getStaticProps() {
   return {
     props: {
-      home: getRandomHomes()
+      homes: await getRandomHomes()
     }
   };
 }
